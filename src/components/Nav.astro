@@ -10,18 +10,40 @@ const navLinks = [
 <nav class="nav" id="nav">
   <div class="nav__inner container">
     <a href="/" class="nav__wordmark">Qaisar Roonjha</a>
-    <ul class="nav__links">
+
+    <ul class="nav__links" id="nav-links">
       {navLinks.map((link) => (
         <li><a href={link.href}>{link.label}</a></li>
       ))}
     </ul>
+
     <a href="#contact" class="btn btn-outline nav__cta">Work With Me</a>
+
+    <!-- Mobile hamburger -->
+    <button class="nav__hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="nav__hamburger-line"></span>
+      <span class="nav__hamburger-line"></span>
+      <span class="nav__hamburger-line"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu overlay -->
+  <div class="nav__mobile" id="nav-mobile" aria-hidden="true">
+    <ul class="nav__mobile-links">
+      {navLinks.map((link) => (
+        <li><a href={link.href} class="nav__mobile-link">{link.label}</a></li>
+      ))}
+      <li><a href="#contact" class="nav__mobile-link nav__mobile-cta">Work With Me</a></li>
+    </ul>
   </div>
 </nav>
 
 <script>
   const nav = document.getElementById('nav');
+  const toggle = document.getElementById('nav-toggle');
+  const mobile = document.getElementById('nav-mobile');
   let scrolled = false;
+  let menuOpen = false;
 
   function onScroll() {
     const isScrolled = window.scrollY > 40;
@@ -30,6 +52,29 @@ const navLinks = [
       nav?.classList.toggle('nav--solid', isScrolled);
     }
   }
+
+  function toggleMenu() {
+    menuOpen = !menuOpen;
+    toggle?.classList.toggle('nav__hamburger--active', menuOpen);
+    mobile?.classList.toggle('nav__mobile--open', menuOpen);
+    toggle?.setAttribute('aria-expanded', String(menuOpen));
+    mobile?.setAttribute('aria-hidden', String(!menuOpen));
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  }
+
+  toggle?.addEventListener('click', toggleMenu);
+
+  // Close on link click
+  mobile?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (menuOpen) toggleMenu();
+    });
+  });
+
+  // Close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) toggleMenu();
+  });
 
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -43,15 +88,15 @@ const navLinks = [
     right: 0;
     z-index: 1000;
     padding: 1.25rem 0;
-    transition: background 0.35s ease, padding 0.35s ease, backdrop-filter 0.35s ease;
+    transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
   }
 
   .nav--solid {
     background: rgba(247, 243, 236, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 0.75rem 0;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
   }
 
   .nav__inner {
@@ -81,16 +126,140 @@ const navLinks = [
     font-weight: 400;
     color: var(--muted);
     letter-spacing: 0.02em;
-    transition: color 0.2s ease;
+    transition: color 0.25s ease;
+    position: relative;
+  }
+
+  .nav__links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--rust);
+    transition: width 0.3s var(--ease-out-expo);
   }
 
   .nav__links a:hover {
     color: var(--ink);
   }
 
+  .nav__links a:hover::after {
+    width: 100%;
+  }
+
+  /* Active nav link */
+  :global(.nav__link--active) {
+    color: var(--ink) !important;
+  }
+
+  :global(.nav__link--active)::after {
+    width: 100% !important;
+    background: var(--rust) !important;
+  }
+
   .nav__cta {
     padding: 0.625rem 1.5rem;
     font-size: 0.8125rem;
+  }
+
+  /* Hamburger */
+  .nav__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .nav__hamburger-line {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  .nav__hamburger--active .nav__hamburger-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .nav__hamburger--active .nav__hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav__hamburger--active .nav__hamburger-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile overlay */
+  .nav__mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(247, 243, 236, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 999;
+  }
+
+  .nav__mobile--open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav__mobile-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav__mobile-link {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  .nav__mobile--open .nav__mobile-link {
+    animation: mobileNavIn 0.4s var(--ease-out-expo) forwards;
+  }
+
+  .nav__mobile--open .nav__mobile-link:nth-child(1) { animation-delay: 0.05s; }
+  .nav__mobile--open .nav__mobile-link:nth-child(2) { animation-delay: 0.1s; }
+  .nav__mobile--open .nav__mobile-link:nth-child(3) { animation-delay: 0.15s; }
+  .nav__mobile--open .nav__mobile-link:nth-child(4) { animation-delay: 0.2s; }
+  .nav__mobile--open .nav__mobile-link:nth-child(5) { animation-delay: 0.25s; }
+
+  @keyframes mobileNavIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav__mobile-cta {
+    color: var(--rust) !important;
+    font-weight: 600;
+    margin-top: 0.5rem;
   }
 
   @media (max-width: 768px) {
@@ -99,8 +268,11 @@ const navLinks = [
     }
 
     .nav__cta {
-      padding: 0.5rem 1.25rem;
-      font-size: 0.75rem;
+      display: none;
+    }
+
+    .nav__hamburger {
+      display: flex;
     }
   }
 </style>

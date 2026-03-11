@@ -1,15 +1,15 @@
 ---
 const stats = [
-  { value: '1M+', label: 'Urdu AI Community' },
-  { value: '15K+', label: 'PakSpeed Tests Week 1' },
-  { value: '5', label: 'Live Platforms' },
-  { value: '3', label: 'Graduate Degrees' },
+  { value: '35', suffix: 'M+', label: 'Monthly Reach' },
+  { value: '1', suffix: 'M+', label: 'AI Community' },
+  { value: '5', suffix: '', label: 'Live Platforms' },
+  { value: '3', suffix: '', label: 'Graduate Degrees' },
 ];
 ---
 
 <section class="hero" id="hero">
   <div class="hero__inner container">
-    <div class="hero__text">
+    <div class="hero__text hero-enter">
       <span class="eyebrow">AI Educator &middot; Founder &middot; Development Professional</span>
       <h1 class="hero__heading">
         The next billion<br />
@@ -21,7 +21,13 @@ const stats = [
       <div class="hero__stats">
         {stats.map((stat) => (
           <div class="hero__stat">
-            <span class="hero__stat-value">{stat.value}</span>
+            <span
+              class="hero__stat-value"
+              data-count={stat.value}
+              data-suffix={stat.suffix}
+            >
+              0{stat.suffix}
+            </span>
             <span class="hero__stat-label">{stat.label}</span>
           </div>
         ))}
@@ -38,7 +44,7 @@ const stats = [
       </div>
     </div>
 
-    <div class="hero__visual">
+    <div class="hero__visual hero-enter" style="animation-delay: 0.3s;">
       <div class="hero__photo-wrapper">
         <picture>
           <source srcset="/hero.webp" type="image/webp" />
@@ -160,6 +166,11 @@ const stats = [
     display: block;
     filter: contrast(1.04) saturate(0.9);
     min-height: 500px;
+    transition: transform 6s ease;
+  }
+
+  .hero__photo-wrapper:hover .hero__photo {
+    transform: scale(1.02);
   }
 
   .hero__overlay {
@@ -218,13 +229,17 @@ const stats = [
 
     .hero__visual {
       order: 2;
-      max-width: 420px;
+      max-width: 480px;
+    }
+
+    .hero__stats {
+      max-width: 480px;
     }
   }
 
   @media (max-width: 768px) {
     .hero {
-      padding-top: 6rem;
+      padding-top: 5.5rem;
       min-height: auto;
     }
 

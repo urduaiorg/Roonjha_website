@@ -1,10 +1,11 @@
 ---
 const credentials = [
-  'Three graduate degrees — international development & sociology',
-  'Only Pakistani org selected for AI Opportunity Fund: Asia-Pacific',
-  'Funded by AVPN, Google.org, ISOC & Asian Development Bank',
-  'Founded in Lasbela — built for the world',
-  'Founder of five live digital platforms across two continents',
+  'Brandeis (Heller School) & CMU — three graduate degrees',
+  'PM Youth Excellence Award (2022) · ADB Climate Resilience Award (2024)',
+  'Featured in Internet Society\'s global documentary on digital inequality',
+  'Only Pakistani organisation selected for AI Opportunity Fund: Asia-Pacific',
+  'Atlas Corps, British Council & DO School Fellow',
+  'Funded by AVPN, Google.org, Internet Society & Asian Development Bank',
 ];
 ---
 
@@ -47,8 +48,25 @@ const credentials = [
         </p>
 
         <p class="story__paragraph reveal">
-          WANG and its innovation lab WALI have been working on the ground for years — girls&rsquo; education, flood rehabilitation housing, rural digital literacy, and youth leadership in communities where the digital divide is not a statistic but a daily reality. Trusted and funded by Internet Society, AVPN, and Google.
+          WANG and its innovation lab WALI have been working on the ground for over a decade — girls&rsquo; education, flood rehabilitation, rural digital literacy, and youth leadership in communities where the digital divide is not a statistic but a daily reality. After the 2022 floods, WANG built fifty sustainable homes for women-led families in Balochistan. Trusted and funded by Internet Society, AVPN, Google.org, and the Asian Development Bank.
         </p>
+
+        <p class="story__paragraph reveal">
+          AI for Edu brings AI integration to Canadian K-12 and post-secondary classrooms. AI Viewer breaks down the global AI landscape for a professional English-language audience. PakSpeed holds ISPs accountable with real connectivity data. Five platforms, two continents, thirty-five million people reached every month.
+        </p>
+
+        <div class="story__documentary reveal">
+          <a href="https://www.youtube.com/watch?v=F0aSyRMBrLE" target="_blank" rel="noopener noreferrer" class="story__documentary-link">
+            <span class="story__documentary-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </span>
+            <span class="story__documentary-text">
+              <span class="story__documentary-label">Featured Documentary</span>
+              <span class="story__documentary-title">Tackling Inequality Using the Internet — Internet Society (2023)</span>
+            </span>
+            <svg class="story__documentary-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12l8-8M5 4h7v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
 
         <p class="story__paragraph story__paragraph--closing reveal">
           Different platforms. Different communities. One conviction: AI should belong to everyone who needs it.
@@ -153,6 +171,79 @@ const credentials = [
     color: var(--ink);
     line-height: 1.55;
     max-width: none;
+  }
+
+  /* Documentary link */
+  .story__documentary {
+    margin: 0.5rem 0;
+  }
+
+  .story__documentary-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(184, 145, 60, 0.06);
+    border: 1px solid rgba(184, 145, 60, 0.15);
+    border-radius: var(--radius);
+    transition: border-color 0.3s ease, background 0.3s ease, gap 0.3s ease;
+  }
+
+  .story__documentary-link:hover {
+    border-color: rgba(184, 145, 60, 0.35);
+    background: rgba(184, 145, 60, 0.1);
+  }
+
+  .story__documentary-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--rust);
+    color: #fff;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .story__documentary-link:hover .story__documentary-badge {
+    transform: scale(1.08);
+  }
+
+  .story__documentary-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .story__documentary-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .story__documentary-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .story__documentary-arrow {
+    color: var(--rust);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .story__documentary-link:hover .story__documentary-arrow {
+    transform: translate(2px, -2px);
   }
 
   @media (max-width: 1024px) {

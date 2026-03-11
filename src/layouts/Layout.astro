@@ -21,6 +21,10 @@ const siteUrl = 'https://roonjha.com';
     <meta name="description" content={description} />
     <meta name="author" content="Qaisar Roonjha" />
 
+    <!-- Preconnect to font origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -41,20 +45,97 @@ const siteUrl = 'https://roonjha.com';
     <slot />
 
     <script>
-      // Scroll reveal with IntersectionObserver
-      const observer = new IntersectionObserver(
+      // ─── Scroll Reveal with IntersectionObserver ───
+      const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
+              revealObserver.unobserve(entry.target);
             }
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.08, rootMargin: '0px 0px -60px 0px' }
       );
 
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+      // ─── Animated Stat Counters ───
+      function animateCounter(el: HTMLElement) {
+        const target = el.dataset.count;
+        if (!target) return;
+
+        const isFloat = target.includes('.');
+        const num = parseFloat(target);
+        const suffix = el.dataset.suffix || '';
+        const prefix = el.dataset.prefix || '';
+        const duration = 1800;
+        const startTime = performance.now();
+
+        function update(currentTime: number) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out quint
+          const eased = 1 - Math.pow(1 - progress, 5);
+          const current = num * eased;
+
+          if (isFloat) {
+            el.textContent = prefix + current.toFixed(1) + suffix;
+          } else {
+            el.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            // Ensure final value is exact
+            if (isFloat) {
+              el.textContent = prefix + num.toFixed(1) + suffix;
+            } else {
+              el.textContent = prefix + num.toLocaleString() + suffix;
+            }
+          }
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target as HTMLElement);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll('[data-count]').forEach((el) => counterObserver.observe(el));
+
+      // ─── Active Nav Section Highlighting ───
+      const navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+      const sections = document.querySelectorAll('section[id]');
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navLinks.forEach((link) => {
+                link.classList.toggle(
+                  'nav__link--active',
+                  link.getAttribute('href') === `#${id}`
+                );
+              });
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
     </script>
   </body>
 </html>

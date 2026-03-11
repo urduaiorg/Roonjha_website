@@ -265,7 +265,6 @@ const dropdownOptions = [
   }
 
   .form__success {
-    display: flex;
     align-items: center;
     gap: 0.75rem;
     padding: 1.5rem;
@@ -273,6 +272,11 @@ const dropdownOptions = [
     border: 1px solid rgba(184, 145, 60, 0.2);
     border-radius: var(--radius);
     color: var(--ink);
+    display: none;
+  }
+
+  .form__success:not([hidden]) {
+    display: flex;
   }
 
   .form__success svg {

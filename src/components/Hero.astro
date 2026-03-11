@@ -39,56 +39,19 @@ const stats = [
     </div>
 
     <div class="hero__visual">
-      <!-- Abstract SVG placeholder — replace with photo.jpg when available -->
       <div class="hero__photo-wrapper">
-        <svg class="hero__svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#1A1208;stop-opacity:1" />
-              <stop offset="50%" style="stop-color:#2a1f10;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#0D0D0D;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#BF4210;stop-opacity:0.15" />
-              <stop offset="100%" style="stop-color:#B8913C;stop-opacity:0.1" />
-            </linearGradient>
-            <clipPath id="photoClip">
-              <rect width="500" height="700" rx="8"/>
-            </clipPath>
-          </defs>
-          <g clip-path="url(#photoClip)">
-            <rect width="500" height="700" fill="url(#grad1)"/>
-            <!-- Abstract geometric pattern suggesting connection/network -->
-            <circle cx="250" cy="300" r="120" fill="none" stroke="#B8913C" stroke-width="0.5" opacity="0.3"/>
-            <circle cx="250" cy="300" r="200" fill="none" stroke="#B8913C" stroke-width="0.5" opacity="0.15"/>
-            <circle cx="250" cy="300" r="280" fill="none" stroke="#B8913C" stroke-width="0.5" opacity="0.08"/>
-            <!-- Nodes -->
-            <circle cx="250" cy="300" r="4" fill="#B8913C" opacity="0.6"/>
-            <circle cx="170" cy="240" r="3" fill="#BF4210" opacity="0.5"/>
-            <circle cx="330" cy="240" r="3" fill="#BF4210" opacity="0.5"/>
-            <circle cx="170" cy="370" r="3" fill="#B8913C" opacity="0.4"/>
-            <circle cx="330" cy="370" r="3" fill="#B8913C" opacity="0.4"/>
-            <circle cx="250" cy="180" r="2.5" fill="#BF4210" opacity="0.4"/>
-            <circle cx="250" cy="420" r="2.5" fill="#BF4210" opacity="0.4"/>
-            <circle cx="130" cy="300" r="2" fill="#B8913C" opacity="0.3"/>
-            <circle cx="370" cy="300" r="2" fill="#B8913C" opacity="0.3"/>
-            <!-- Connection lines -->
-            <line x1="250" y1="300" x2="170" y2="240" stroke="#B8913C" stroke-width="0.5" opacity="0.25"/>
-            <line x1="250" y1="300" x2="330" y2="240" stroke="#B8913C" stroke-width="0.5" opacity="0.25"/>
-            <line x1="250" y1="300" x2="170" y2="370" stroke="#BF4210" stroke-width="0.5" opacity="0.2"/>
-            <line x1="250" y1="300" x2="330" y2="370" stroke="#BF4210" stroke-width="0.5" opacity="0.2"/>
-            <line x1="250" y1="300" x2="250" y2="180" stroke="#B8913C" stroke-width="0.5" opacity="0.2"/>
-            <line x1="250" y1="300" x2="250" y2="420" stroke="#B8913C" stroke-width="0.5" opacity="0.2"/>
-            <line x1="250" y1="300" x2="130" y2="300" stroke="#BF4210" stroke-width="0.5" opacity="0.15"/>
-            <line x1="250" y1="300" x2="370" y2="300" stroke="#BF4210" stroke-width="0.5" opacity="0.15"/>
-            <line x1="170" y1="240" x2="330" y2="240" stroke="#B8913C" stroke-width="0.3" opacity="0.12"/>
-            <line x1="170" y1="370" x2="330" y2="370" stroke="#B8913C" stroke-width="0.3" opacity="0.12"/>
-            <!-- Subtle texture overlay -->
-            <rect width="500" height="700" fill="url(#grad2)"/>
-            <!-- Silhouette placeholder hint -->
-            <text x="250" y="560" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="#B5A99A" opacity="0.5" letter-spacing="0.15em">PHOTO COMING SOON</text>
-          </g>
-        </svg>
+        <picture>
+          <source srcset="/hero.webp" type="image/webp" />
+          <img
+            class="hero__photo"
+            src="/hero.jpg"
+            alt="Qaisar Roonjha standing in green fields, wearing an Urdu AI polo shirt"
+            width="2344"
+            height="1320"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
         <div class="hero__overlay"></div>
         <blockquote class="hero__quote">
           <p>&ldquo;The most important work in AI isn&rsquo;t building the next model &mdash; it&rsquo;s ensuring the next billion people know how to use it.&rdquo;</p>
@@ -189,10 +152,14 @@ const stats = [
     overflow: hidden;
   }
 
-  .hero__svg {
+  .hero__photo {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
     display: block;
+    filter: contrast(1.04) saturate(0.9);
+    min-height: 500px;
   }
 
   .hero__overlay {

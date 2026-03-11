@@ -1,0 +1,170 @@
+---
+const cards = [
+  {
+    number: '01',
+    title: 'Sponsors & Platform Partners',
+    description: 'Reach Urdu-speaking Pakistani audiences, Canadian educators, and global AI professionals through authentic, mission-aligned content across five live platforms.',
+    details: 'Newsletter integrations \u00B7 Social content \u00B7 Video sponsorships \u00B7 Workshop branding \u00B7 AI tools directory \u00B7 Platform partnerships',
+    cta: 'Request the Media Kit',
+    type: 'Platform Sponsorship/Partnership',
+  },
+  {
+    number: '02',
+    title: 'Funders & Development Partners',
+    description: 'WANG and WALI have a proven track record with international development funders on digital inclusion, community resilience, and grassroots AI education in Pakistan.',
+    details: 'Open to co-design, concept development, research partnerships, and joint funding applications.',
+    cta: 'Start a Conversation',
+    type: 'Funding/Development Partnership',
+  },
+];
+---
+
+<section class="partner section" id="partner">
+  <div class="partner__inner container">
+    <div class="partner__header reveal">
+      <span class="eyebrow partner__eyebrow">Collaborate</span>
+      <h2 class="partner__heading">Two ways to work together.</h2>
+      <p class="partner__subtext">Whether you represent a brand, a funder, or a development organization — there is a clear path to partnership.</p>
+    </div>
+
+    <div class="partner__cards reveal-stagger">
+      {cards.map((card) => (
+        <div class="partner-card reveal">
+          <span class="partner-card__number" aria-hidden="true">{card.number}</span>
+          <h3 class="partner-card__title">{card.title}</h3>
+          <p class="partner-card__desc">{card.description}</p>
+          <p class="partner-card__details">{card.details}</p>
+          <a href={`#contact`} class="btn btn-outline partner-card__cta btn-arrow" data-contact-type={card.type}>
+            {card.cta}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pre-fill contact form type when partner CTAs are clicked
+  document.querySelectorAll('.partner-card__cta').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const type = (btn as HTMLElement).dataset.contactType;
+      if (type) {
+        setTimeout(() => {
+          const select = document.getElementById('contact-type') as HTMLSelectElement;
+          if (select) {
+            select.value = type;
+          }
+        }, 400);
+      }
+    });
+  });
+</script>
+
+<style>
+  .partner {
+    background: var(--deep);
+  }
+
+  .partner__eyebrow {
+    color: var(--gold);
+  }
+
+  .partner__eyebrow::before {
+    background: var(--gold);
+  }
+
+  .partner__heading {
+    color: rgba(255, 255, 255, 0.95);
+    margin-top: 1rem;
+  }
+
+  .partner__subtext {
+    color: rgba(181, 169, 154, 0.6);
+    margin-top: 1rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .partner__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .partner-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(181, 169, 154, 0.1);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .partner-card:hover {
+    border-color: rgba(181, 169, 154, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .partner-card__number {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    font-weight: 700;
+    color: rgba(184, 145, 60, 0.06);
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .partner-card__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .partner-card__desc {
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: rgba(181, 169, 154, 0.7);
+    max-width: none;
+  }
+
+  .partner-card__details {
+    font-size: 0.8125rem;
+    line-height: 1.75;
+    color: rgba(181, 169, 154, 0.45);
+    max-width: none;
+  }
+
+  .partner-card__cta {
+    margin-top: auto;
+    padding-top: 0.5rem;
+    color: var(--gold);
+    border-color: var(--gold);
+    align-self: flex-start;
+  }
+
+  .partner-card__cta:hover {
+    background: var(--gold);
+    color: var(--deep);
+  }
+
+  @media (max-width: 768px) {
+    .partner__cards {
+      grid-template-columns: 1fr;
+    }
+
+    .partner-card {
+      padding: 2rem;
+    }
+  }
+</style>

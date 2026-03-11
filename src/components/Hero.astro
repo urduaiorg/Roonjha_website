@@ -1,0 +1,286 @@
+---
+const stats = [
+  { value: '1M+', label: 'Urdu AI Community' },
+  { value: '15K+', label: 'PakSpeed Tests Week 1' },
+  { value: '5', label: 'Live Platforms' },
+  { value: '3', label: 'Graduate Degrees' },
+];
+---
+
+<section class="hero" id="hero">
+  <div class="hero__inner container">
+    <div class="hero__text">
+      <span class="eyebrow">AI Educator &middot; Founder &middot; Development Professional</span>
+      <h1 class="hero__heading">
+        The next billion<br />
+        <em>deserve AI too.</em>
+      </h1>
+      <p class="hero__lead">
+        Building the platforms, communities, and infrastructure that make artificial intelligence accessible to people the tech world consistently forgets to include.
+      </p>
+      <div class="hero__stats">
+        {stats.map((stat) => (
+          <div class="hero__stat">
+            <span class="hero__stat-value">{stat.value}</span>
+            <span class="hero__stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+      <div class="hero__cta">
+        <a href="#partner" class="btn btn-primary btn-arrow">
+          Partner With Me
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#story" class="btn btn-outline btn-arrow">
+          Read the Story
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <!-- Abstract SVG placeholder — replace with photo.jpg when available -->
+      <div class="hero__photo-wrapper">
+        <svg class="hero__svg" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#1A1208;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#2a1f10;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#0D0D0D;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#BF4210;stop-opacity:0.15" />
+              <stop offset="100%" style="stop-color:#B8913C;stop-opacity:0.1" />
+            </linearGradient>
+            <clipPath id="photoClip">
+              <rect width="500" height="700" rx="8"/>
+            </clipPath>
+          </defs>
+          <g clip-path="url(#photoClip)">
+            <rect width="500" height="700" fill="url(#grad1)"/>
+            <!-- Abstract geometric pattern suggesting connection/network -->
+            <circle cx="250" cy="300" r="120" fill="none" stroke="#B8913C" stroke-width="0.5" opacity="0.3"/>
+            <circle cx="250" cy="300" r="200" fill="none" stroke="#B8913C" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="250" cy="300" r="280" fill="none" stroke="#B8913C" stroke-width="0.5" opacity="0.08"/>
+            <!-- Nodes -->
+            <circle cx="250" cy="300" r="4" fill="#B8913C" opacity="0.6"/>
+            <circle cx="170" cy="240" r="3" fill="#BF4210" opacity="0.5"/>
+            <circle cx="330" cy="240" r="3" fill="#BF4210" opacity="0.5"/>
+            <circle cx="170" cy="370" r="3" fill="#B8913C" opacity="0.4"/>
+            <circle cx="330" cy="370" r="3" fill="#B8913C" opacity="0.4"/>
+            <circle cx="250" cy="180" r="2.5" fill="#BF4210" opacity="0.4"/>
+            <circle cx="250" cy="420" r="2.5" fill="#BF4210" opacity="0.4"/>
+            <circle cx="130" cy="300" r="2" fill="#B8913C" opacity="0.3"/>
+            <circle cx="370" cy="300" r="2" fill="#B8913C" opacity="0.3"/>
+            <!-- Connection lines -->
+            <line x1="250" y1="300" x2="170" y2="240" stroke="#B8913C" stroke-width="0.5" opacity="0.25"/>
+            <line x1="250" y1="300" x2="330" y2="240" stroke="#B8913C" stroke-width="0.5" opacity="0.25"/>
+            <line x1="250" y1="300" x2="170" y2="370" stroke="#BF4210" stroke-width="0.5" opacity="0.2"/>
+            <line x1="250" y1="300" x2="330" y2="370" stroke="#BF4210" stroke-width="0.5" opacity="0.2"/>
+            <line x1="250" y1="300" x2="250" y2="180" stroke="#B8913C" stroke-width="0.5" opacity="0.2"/>
+            <line x1="250" y1="300" x2="250" y2="420" stroke="#B8913C" stroke-width="0.5" opacity="0.2"/>
+            <line x1="250" y1="300" x2="130" y2="300" stroke="#BF4210" stroke-width="0.5" opacity="0.15"/>
+            <line x1="250" y1="300" x2="370" y2="300" stroke="#BF4210" stroke-width="0.5" opacity="0.15"/>
+            <line x1="170" y1="240" x2="330" y2="240" stroke="#B8913C" stroke-width="0.3" opacity="0.12"/>
+            <line x1="170" y1="370" x2="330" y2="370" stroke="#B8913C" stroke-width="0.3" opacity="0.12"/>
+            <!-- Subtle texture overlay -->
+            <rect width="500" height="700" fill="url(#grad2)"/>
+            <!-- Silhouette placeholder hint -->
+            <text x="250" y="560" text-anchor="middle" font-family="Outfit, sans-serif" font-size="11" fill="#B5A99A" opacity="0.5" letter-spacing="0.15em">PHOTO COMING SOON</text>
+          </g>
+        </svg>
+        <div class="hero__overlay"></div>
+        <blockquote class="hero__quote">
+          <p>&ldquo;The most important work in AI isn&rsquo;t building the next model &mdash; it&rsquo;s ensuring the next billion people know how to use it.&rdquo;</p>
+          <cite>&mdash; Qaisar Roonjha</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .hero__heading {
+    line-height: 1.08;
+  }
+
+  .hero__heading em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--rust);
+  }
+
+  .hero__lead {
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    color: var(--muted);
+    max-width: 50ch;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid rgba(181, 169, 154, 0.3);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 540px;
+  }
+
+  .hero__stat {
+    padding: 1rem 0.75rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .hero__stat:not(:last-child) {
+    border-right: 1px solid rgba(181, 169, 154, 0.3);
+  }
+
+  .hero__stat-value {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .hero__stat-label {
+    font-size: 0.6875rem;
+    color: var(--faint);
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Visual / Photo column */
+  .hero__photo-wrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero__svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(13, 13, 13, 0.85) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero__quote {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    background: rgba(13, 13, 13, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-left: 3px solid var(--gold);
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+  }
+
+  .hero__quote p {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  .hero__quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-style: normal;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .hero__text {
+      order: 1;
+    }
+
+    .hero__visual {
+      order: 2;
+      max-width: 420px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 6rem;
+      min-height: auto;
+    }
+
+    .hero__visual {
+      display: none;
+    }
+
+    .hero__stats {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 320px;
+    }
+
+    .hero__stat:nth-child(1),
+    .hero__stat:nth-child(2) {
+      border-bottom: 1px solid rgba(181, 169, 154, 0.3);
+    }
+
+    .hero__stat:nth-child(2) {
+      border-right: none;
+    }
+
+    .hero__stat:nth-child(4) {
+      border-right: none;
+    }
+  }
+</style>

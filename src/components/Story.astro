@@ -1,0 +1,168 @@
+---
+const credentials = [
+  'Three graduate degrees — international development & sociology',
+  'Only Pakistani org selected for AI Opportunity Fund: Asia-Pacific',
+  'Funded by AVPN, Google.org, ISOC & Asian Development Bank',
+  'Founded in Lasbela — built for the world',
+  'Founder of five live digital platforms across two continents',
+];
+---
+
+<section class="story section" id="story">
+  <div class="story__inner container">
+    <div class="story__left">
+      <div class="story__left-sticky">
+        <span class="eyebrow reveal">Story</span>
+        <h2 class="story__heading reveal">
+          The mission came first.<br />
+          <em>The tech followed.</em>
+        </h2>
+        <ul class="story__credentials reveal">
+          {credentials.map((item) => (
+            <li class="story__credential">
+              <span class="story__credential-mark" aria-hidden="true">&#9670;</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="story__right">
+      <div class="story__narrative">
+        <p class="story__paragraph story__paragraph--dropcap reveal">
+          I came to AI through development work — not the other way around. After years studying how communities are shaped by systems of power and exclusion, I watched artificial intelligence become the most consequential of those systems. The question underneath all of my work has always been the same: who gets left out?
+        </p>
+
+        <p class="story__paragraph reveal">
+          Urdu AI started from that gap — and grew into Pakistan&rsquo;s leading AI literacy platform, now reaching over one million people through social media, a weekly newsletter, a mobile app, and workshops across the country. The largest Urdu-language AI education community in the world, built without a venture round and without corporate backing.
+        </p>
+
+        <blockquote class="story__pullquote reveal">
+          <p>220 million people speak Urdu. Almost none of the world&rsquo;s AI education reaches them. So I built the infrastructure to change that.</p>
+        </blockquote>
+
+        <p class="story__paragraph reveal">
+          Then came PakSpeed — because you cannot talk about digital inclusion without honest data on who actually has connectivity and who doesn&rsquo;t. In its first seven days, Pakistan&rsquo;s first community-owned internet speed monitoring network logged over 15,000 tests. Real data. Real accountability. Built for the people it measures.
+        </p>
+
+        <p class="story__paragraph reveal">
+          WANG and its innovation lab WALI have been working on the ground for years — girls&rsquo; education, flood rehabilitation housing, rural digital literacy, and youth leadership in communities where the digital divide is not a statistic but a daily reality. Trusted and funded by Internet Society, AVPN, and Google.
+        </p>
+
+        <p class="story__paragraph story__paragraph--closing reveal">
+          Different platforms. Different communities. One conviction: AI should belong to everyone who needs it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story {
+    background: var(--cream);
+  }
+
+  .story__inner {
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    gap: 4rem;
+  }
+
+  .story__left-sticky {
+    position: sticky;
+    top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .story__heading em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .story__credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .story__credential {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .story__credential-mark {
+    color: var(--gold);
+    font-size: 0.5rem;
+    flex-shrink: 0;
+    transform: translateY(-1px);
+  }
+
+  .story__narrative {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .story__paragraph {
+    font-size: 1.0625rem;
+    line-height: 1.92;
+    color: var(--muted);
+  }
+
+  .story__paragraph--dropcap::first-letter {
+    font-family: var(--font-display);
+    font-size: 3.75rem;
+    font-weight: 600;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.5rem;
+    margin-top: 0.15rem;
+    color: var(--rust);
+  }
+
+  .story__paragraph--closing {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .story__pullquote {
+    border-left: 3px solid var(--gold);
+    background: rgba(184, 145, 60, 0.06);
+    padding: 1.5rem 2rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 0.5rem 0;
+  }
+
+  .story__pullquote p {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.55;
+    max-width: none;
+  }
+
+  @media (max-width: 1024px) {
+    .story__inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .story__left-sticky {
+      position: static;
+    }
+  }
+</style>

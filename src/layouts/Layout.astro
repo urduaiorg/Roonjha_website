@@ -11,6 +11,83 @@ const {
 
 const ogImage = '/og-image.jpg';
 const siteUrl = 'https://roonjha.com';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Qaisar Roonjha',
+  url: siteUrl,
+  image: `${siteUrl}/hero.webp`,
+  jobTitle: 'AI Educator, Founder & Development Professional',
+  description: description,
+  sameAs: [
+    'https://linkedin.com/in/qaisarroonjha',
+    'https://urduai.org',
+    'https://pakspeed.com',
+  ],
+  knowsAbout: [
+    'Artificial Intelligence',
+    'AI Literacy',
+    'Digital Inclusion',
+    'Community Development',
+    'Urdu Language AI Education',
+  ],
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Brandeis University',
+      department: 'Heller School for Social Policy and Management',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Canadian Mennonite University',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of Balochistan',
+    },
+  ],
+  award: [
+    'PM Youth Excellence Award',
+    'ADB Climate Resilience Award',
+    'British Council Global Changemaker',
+    'Atlas Corps Fellow (U.S. State Dept.)',
+    'Rise Up Fellow (Gates Foundation)',
+    'Internet Society Fellow',
+  ],
+  founder: [
+    {
+      '@type': 'Organization',
+      name: 'Urdu AI',
+      url: 'https://urduai.org',
+      description: "Pakistan's largest Urdu-language AI literacy platform with 1M+ community members",
+    },
+    {
+      '@type': 'Organization',
+      name: 'WANG (Waadi Aman Naujawan Group)',
+      description: "Girls' education, flood response & rural digital literacy in Balochistan since 2013",
+    },
+    {
+      '@type': 'Organization',
+      name: 'PakSpeed',
+      url: 'https://pakspeed.com',
+      description: "Pakistan's first community-owned internet speed testing platform",
+    },
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Qaisar Roonjha',
+  url: siteUrl,
+  description: description,
+  author: {
+    '@type': 'Person',
+    name: 'Qaisar Roonjha',
+  },
+};
 ---
 
 <!doctype html>
@@ -20,25 +97,45 @@ const siteUrl = 'https://roonjha.com';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="author" content="Qaisar Roonjha" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#1A1612" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Preconnect to font origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Qaisar Roonjha" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Qaisar Roonjha — AI Educator building platforms for the next billion" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@qaisarroonjha" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    <meta name="twitter:image:alt" content="Qaisar Roonjha — AI Educator building platforms for the next billion" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
     <title>{title}</title>
   </head>
   <body>

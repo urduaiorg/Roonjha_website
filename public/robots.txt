@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://roonjha.com/sitemap-index.xml

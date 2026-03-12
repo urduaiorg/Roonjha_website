@@ -1,5 +1,5 @@
 ---
-const partners = [
+const funders = [
   'U.S. State Department',
   'Gates Foundation',
   'Google.org',
@@ -9,18 +9,54 @@ const partners = [
   'AVPN',
   'Scottish Government',
 ];
+
+const media = [
+  'BBC',
+  'VOA',
+  'The Independent',
+  'Express News',
+  'ARY',
+];
 ---
 
 <section class="trust-bar">
-  <div class="trust-bar__inner container">
+  <div class="trust-bar__row">
     <span class="trust-bar__label">Recognised & funded by</span>
-    <div class="trust-bar__logos">
-      {partners.map((name, i) => (
-        <Fragment>
-          <span class="trust-bar__name">{name}</span>
-          {i < partners.length - 1 && <span class="trust-bar__sep" aria-hidden="true"></span>}
-        </Fragment>
-      ))}
+    <div class="trust-bar__track">
+      <div class="trust-bar__marquee">
+        {funders.map((name) => (
+          <Fragment>
+            <span class="trust-bar__name">{name}</span>
+            <span class="trust-bar__dot" aria-hidden="true">&middot;</span>
+          </Fragment>
+        ))}
+        {funders.map((name) => (
+          <Fragment>
+            <span class="trust-bar__name" aria-hidden="true">{name}</span>
+            <span class="trust-bar__dot" aria-hidden="true">&middot;</span>
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="trust-bar__divider"></div>
+  <div class="trust-bar__row">
+    <span class="trust-bar__label">Featured in</span>
+    <div class="trust-bar__track">
+      <div class="trust-bar__marquee trust-bar__marquee--slow">
+        {media.map((name) => (
+          <Fragment>
+            <span class="trust-bar__name">{name}</span>
+            <span class="trust-bar__dot" aria-hidden="true">&middot;</span>
+          </Fragment>
+        ))}
+        {media.map((name) => (
+          <Fragment>
+            <span class="trust-bar__name" aria-hidden="true">{name}</span>
+            <span class="trust-bar__dot" aria-hidden="true">&middot;</span>
+          </Fragment>
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -28,71 +64,85 @@ const partners = [
 <style>
   .trust-bar {
     background: var(--deep);
-    padding: 1.5rem 0;
+    padding: 1.35rem 0;
     overflow: hidden;
   }
 
-  .trust-bar__inner {
+  .trust-bar__row {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0.5rem clamp(1.25rem, 5vw, 6vw);
+  }
+
+  .trust-bar__divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(181, 169, 154, 0.08);
   }
 
   .trust-bar__label {
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(181, 169, 154, 0.5);
+    color: rgba(181, 169, 154, 0.4);
     flex-shrink: 0;
+    min-width: 130px;
   }
 
-  .trust-bar__logos {
+  .trust-bar__track {
+    overflow: hidden;
+    flex: 1;
+    mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  }
+
+  .trust-bar__marquee {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 2.5rem;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  .trust-bar__marquee--slow {
+    animation-duration: 22s;
   }
 
   .trust-bar__name {
     font-family: var(--font-body);
-    font-size: 0.8125rem;
+    font-size: 0.8rem;
     font-weight: 400;
-    color: rgba(181, 169, 154, 0.65);
+    color: rgba(181, 169, 154, 0.55);
     letter-spacing: 0.03em;
-    transition: color 0.25s ease;
     white-space: nowrap;
+    transition: color 0.25s ease;
   }
 
   .trust-bar__name:hover {
     color: var(--gold);
   }
 
-  .trust-bar__sep {
-    width: 1px;
-    height: 14px;
-    background: rgba(181, 169, 154, 0.2);
+  .trust-bar__dot {
+    color: rgba(181, 169, 154, 0.25);
+    font-size: 1rem;
     flex-shrink: 0;
+    line-height: 1;
   }
 
   @media (max-width: 768px) {
-    .trust-bar__inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
+    .trust-bar__row {
+      gap: 1.25rem;
     }
 
-    .trust-bar__logos {
-      gap: 1rem;
-    }
-
-    .trust-bar__sep {
-      display: none;
+    .trust-bar__label {
+      font-size: 0.5625rem;
+      min-width: 90px;
     }
 
     .trust-bar__name {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
   }
 </style>

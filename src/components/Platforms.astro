@@ -4,18 +4,20 @@ const platforms = [
     id: 'urduai',
     tag: 'AI Literacy',
     name: 'Urdu AI',
-    description: 'Pakistan\'s leading Urdu-language AI education platform. Social media, newsletter, mobile app, and workshops reaching the largest Urdu AI community in the world.',
-    stat: '1M+ reach',
+    description: 'Pakistan\u2019s leading Urdu-language AI education platform. Social media, newsletter, mobile app, and workshops reaching the largest Urdu AI community in the world.',
+    stat: '1M+ community',
     url: 'https://urduai.org',
+    accent: '#BF4210',
     wide: false,
   },
   {
     id: 'pakspeed',
     tag: 'Digital Infrastructure',
     name: 'PakSpeed',
-    description: 'Pakistan\'s first community-owned internet speed monitoring network. Real connectivity data for digital equity advocacy and ISP accountability.',
-    stat: '15K+ tests Week 1',
+    description: 'Pakistan\u2019s first community-owned internet speed monitoring network. Real connectivity data for digital equity advocacy and ISP accountability.',
+    stat: '15K+ tests in Week 1',
     url: 'https://pakspeed.com',
+    accent: '#2D7D46',
     wide: false,
   },
   {
@@ -25,15 +27,17 @@ const platforms = [
     description: 'Independent AI tool reviews, policy resources, and implementation guidance for educators and institutions worldwide. Vendor-neutral. Evidence-based.',
     stat: null,
     url: 'https://aiforedu.ai',
+    accent: '#4A6FA5',
     wide: false,
   },
   {
     id: 'wang',
     tag: 'Community Development & Social Enterprise',
     name: 'WANG / WALI / WIRE',
-    description: 'Girls\' education, flood rehabilitation, rural digital literacy, and youth leadership — plus a women-led social enterprise turning traditional crafts into sustainable livelihoods through e-commerce. Fifty homes rebuilt after the 2022 floods. Pakistan\'s first rural innovation hub (WALI). Over a decade on the ground.',
-    stat: '50 Homes Rebuilt · MIT Solve 2025 Semi-Finalist · Funded by ISOC, AVPN, Google.org, ADB',
+    description: 'A decade of girls\u2019 education, flood rehabilitation, and rural digital literacy \u2014 now extending into women-led social enterprise through WIRE. Fifty homes rebuilt. 500+ women empowered. Pakistan\u2019s first rural innovation hub.',
+    stat: 'MIT Solve 2025 Semi-Finalist \u00B7 Funded by ISOC, AVPN, Google.org, ADB',
     url: 'https://wang.org.pk',
+    accent: '#B8913C',
     wide: true,
   },
   {
@@ -43,6 +47,7 @@ const platforms = [
     description: 'English-language AI news, tool breakdowns, and analysis for a global professional audience.',
     stat: null,
     url: 'https://aiviewer.ai',
+    accent: '#7C5CBF',
     wide: false,
   },
 ];
@@ -56,7 +61,7 @@ const platforms = [
         <h2>Five platforms.<br /><em>One ecosystem.</em></h2>
       </div>
       <p class="platforms__header-intro">
-        Each platform serves a different community, a different language, a different need. Together, they form a connected infrastructure for AI inclusion that spans two continents.
+        Each platform serves a different community, a different language, a different need. Together, they form a connected infrastructure for AI inclusion across two continents.
       </p>
     </div>
 
@@ -65,8 +70,9 @@ const platforms = [
         <a
           href={p.url}
           class={`platform-card reveal ${p.wide ? 'platform-card--wide' : ''}`}
-          target={p.url.startsWith('http') ? '_blank' : undefined}
-          rel={p.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={`--card-accent: ${p.accent};`}
         >
           <div class="platform-card__top-border" aria-hidden="true"></div>
           <div class="platform-card__icon" aria-hidden="true">
@@ -110,9 +116,6 @@ const platforms = [
                 <path d="M14 28c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 <path d="M6 30c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 <path d="M26 30c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M20 34v-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
-                <path d="M13 31l-3-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
-                <path d="M27 31l3-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
               </svg>
             )}
             {p.id === 'aiviewer' && (
@@ -135,7 +138,7 @@ const platforms = [
           <p class="platform-card__desc">{p.description}</p>
           {p.stat && <span class="platform-card__stat">{p.stat}</span>}
           <span class="platform-card__link">
-            {p.url.startsWith('http') ? p.url.replace('https://', '') : 'Get in touch'}
+            {p.url.replace('https://', '')}
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12l8-8M5 4h7v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </a>
@@ -171,27 +174,28 @@ const platforms = [
   .platforms__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   /* Card */
   .platform-card {
+    --card-accent: var(--rust);
     position: relative;
     background: #fff;
-    border: 1px solid rgba(181, 169, 154, 0.15);
-    border-radius: var(--radius);
+    border: 1px solid rgba(181, 169, 154, 0.12);
+    border-radius: var(--radius-lg);
     padding: 2.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
-    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    gap: 0.6rem;
+    transition: all 0.35s var(--ease-out-expo);
     overflow: hidden;
   }
 
   .platform-card:hover {
-    background: #fdfbf8;
-    border-color: rgba(181, 169, 154, 0.3);
-    box-shadow: 0 8px 32px rgba(13, 13, 13, 0.04);
+    border-color: rgba(181, 169, 154, 0.25);
+    box-shadow: 0 12px 40px rgba(13, 13, 13, 0.06);
+    transform: translateY(-4px);
   }
 
   .platform-card__top-border {
@@ -200,10 +204,10 @@ const platforms = [
     left: 0;
     right: 0;
     height: 3px;
-    background: var(--rust);
+    background: var(--card-accent);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s var(--ease-out-expo);
   }
 
   .platform-card:hover .platform-card__top-border {
@@ -216,14 +220,14 @@ const platforms = [
 
   /* Icon */
   .platform-card__icon {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--rust);
-    margin-bottom: 0.35rem;
-    transition: color 0.25s ease, transform 0.3s ease;
+    color: var(--card-accent);
+    margin-bottom: 0.25rem;
+    transition: transform 0.35s var(--ease-out-expo);
   }
 
   .platform-card__icon svg {
@@ -232,16 +236,16 @@ const platforms = [
   }
 
   .platform-card:hover .platform-card__icon {
-    color: var(--gold);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   .platform-card__tag {
-    font-size: 0.6875rem;
+    font-size: 0.65rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--card-accent);
+    opacity: 0.7;
   }
 
   .platform-card__name {
@@ -260,10 +264,10 @@ const platforms = [
 
   .platform-card__stat {
     font-family: var(--font-display);
-    font-size: 0.9375rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--rust);
-    margin-top: 0.25rem;
+    color: var(--card-accent);
+    margin-top: 0.15rem;
   }
 
   .platform-card__link {
@@ -272,10 +276,10 @@ const platforms = [
     gap: 0.35rem;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: var(--rust);
+    color: var(--card-accent);
     margin-top: auto;
     padding-top: 0.75rem;
-    transition: gap 0.2s ease;
+    transition: gap 0.25s ease;
   }
 
   .platform-card:hover .platform-card__link {

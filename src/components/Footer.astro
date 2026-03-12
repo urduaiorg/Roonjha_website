@@ -3,74 +3,148 @@ const links = [
   { label: 'Urdu AI', href: 'https://urduai.org' },
   { label: 'PakSpeed', href: 'https://pakspeed.com' },
   { label: 'AI for Edu', href: 'https://aiforedu.ai' },
-  { label: 'AI Viewer', href: 'https://aiviewer.com' },
+  { label: 'AI Viewer', href: 'https://aiviewer.ai' },
+  { label: 'WANG', href: 'https://wang.org.pk' },
+];
+
+const socials = [
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/qaisarroonjha' },
   { label: 'Contact', href: '#contact' },
 ];
 ---
 
 <footer class="footer">
   <div class="footer__inner container">
-    <a href="/" class="footer__wordmark">Qaisar Roonjha</a>
-
-    <nav class="footer__links" aria-label="Footer navigation">
-      {links.map((link) => (
-        <a
-          href={link.href}
-          target={link.href.startsWith('http') ? '_blank' : undefined}
-          rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-        >
-          {link.label}
-        </a>
-      ))}
-    </nav>
-
-    <p class="footer__copy">&copy; 2026 Qaisar Roonjha. All rights reserved.</p>
+    <div class="footer__top">
+      <a href="/" class="footer__wordmark">Qaisar Roonjha</a>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <div class="footer__link-group">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <div class="footer__link-group">
+          {socials.map((link) => (
+            <a
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+    </div>
+    <div class="footer__divider"></div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2026 Qaisar Roonjha. All rights reserved.</p>
+      <p class="footer__tagline">Building AI for the next billion.</p>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
     background: var(--deep);
-    padding: 3rem 0;
+    padding: 3.5rem 0 2.5rem;
   }
 
   .footer__inner {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    text-align: center;
+    gap: 2rem;
+  }
+
+  .footer__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
   }
 
   .footer__wordmark {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.15);
     letter-spacing: -0.01em;
+    flex-shrink: 0;
   }
 
   .footer__links {
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    gap: 3rem;
     flex-wrap: wrap;
-    justify-content: center;
+  }
+
+  .footer__link-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .footer__links a {
-    font-size: 0.8125rem;
-    color: rgba(181, 169, 154, 0.5);
-    transition: color 0.2s ease;
+    font-size: 0.8rem;
+    color: rgba(181, 169, 154, 0.45);
+    transition: color 0.25s ease;
   }
 
   .footer__links a:hover {
     color: var(--gold);
   }
 
+  .footer__divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(181, 169, 154, 0.08);
+  }
+
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
   .footer__copy {
-    font-size: 0.75rem;
-    color: rgba(181, 169, 154, 0.3);
+    font-size: 0.7rem;
+    color: rgba(181, 169, 154, 0.25);
     max-width: none;
+  }
+
+  .footer__tagline {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(181, 169, 154, 0.2);
+    max-width: none;
+  }
+
+  @media (max-width: 768px) {
+    .footer__top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .footer__links {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+    }
   }
 </style>
